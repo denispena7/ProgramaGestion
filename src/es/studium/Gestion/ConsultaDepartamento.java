@@ -31,6 +31,7 @@ public class ConsultaDepartamento implements WindowListener, ActionListener
 		
 		ventana.add(listado);
 		ventana.add(btnVolver);
+		
 		ventana.setSize(350, 200);
 		ventana.setResizable(false);
 		ventana.setLocationRelativeTo(null);
@@ -48,7 +49,6 @@ public class ConsultaDepartamento implements WindowListener, ActionListener
 	public void windowClosing(WindowEvent e)
 	{
 		ventana.setVisible(false);
-		
 	}
 	
 	@Override

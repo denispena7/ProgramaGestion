@@ -111,4 +111,25 @@ public class Datos
 
 		return contenido;
 	}
+	
+	public boolean altaDepartamento(String nombre, String localidad)
+	{
+		boolean altaCorrecta = true;
+		String sentenciaSQL = "INSERT INTO departamentos VALUES (NULL, '" + nombre + "', '" + localidad + "');";
+		System.out.println(sentenciaSQL);
+		
+		try
+		{
+			statement =
+					connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			statement.executeUpdate(sentenciaSQL);
+		}
+		catch(SQLException e)
+		{
+			System.out.println("Error en la sentencia SQL:"+e.toString());
+			altaCorrecta = false;
+		}
+		
+		return altaCorrecta;
+	}
 }
