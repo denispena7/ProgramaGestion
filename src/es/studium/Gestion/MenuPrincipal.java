@@ -35,6 +35,7 @@ public class MenuPrincipal implements WindowListener, ActionListener
 		ventana.addWindowListener(this);
 		mniConsultaDepartamento.addActionListener(this);
 		mniAltaDepartamento.addActionListener(this);
+		mniBajaDepartamento.addActionListener(this);
 		
 		ventana.setMenuBar(barraMenu);
 		
@@ -85,6 +86,10 @@ public class MenuPrincipal implements WindowListener, ActionListener
 		else if(actionEvent.getSource().equals(mniAltaDepartamento))
 		{
 			new AltaDepartamento();
+		}
+		else if(actionEvent.getSource().equals(mniBajaDepartamento))
+		{
+			new BajaDepartamento();
 		}
 	}
 }

@@ -98,7 +98,7 @@ public class Datos
 			statement =
 					connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
 			rs = statement.executeQuery(sentencia);
-			
+
 			while(rs.next())
 			{
 				contenido = contenido + rs.getString("nombreDepartamento")+ "\n";
@@ -111,13 +111,13 @@ public class Datos
 
 		return contenido;
 	}
-	
+
 	public boolean altaDepartamento(String nombre, String localidad)
 	{
 		boolean altaCorrecta = true;
 		String sentenciaSQL = "INSERT INTO departamentos VALUES (NULL, '" + nombre + "', '" + localidad + "');";
 		System.out.println(sentenciaSQL);
-		
+
 		try
 		{
 			statement =
@@ -129,7 +129,51 @@ public class Datos
 			System.out.println("Error en la sentencia SQL:"+e.toString());
 			altaCorrecta = false;
 		}
-		
+
 		return altaCorrecta;
+	}
+
+	public int dameTipo(String usuario)
+	{
+		String sentencia = "SELECT tipoUsuario FROM usuarios WHERE usuario = '"+usuario + "';";
+		return 0;
+	}
+
+	public String[] rellenarChoiceDepartamentos()
+	{
+		String elementosCadena = "Elegir un departamento...*"; 
+		String sentencia = "SELECT * FROM departamentos;";
+		try
+		{
+			statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
+			rs = statement.executeQuery(sentencia);
+
+			while(rs.next())
+			{
+				elementosCadena = elementosCadena + rs.getString("idDepartamento") + "-" + rs.getString("nombreDepartamento")
+				+ rs.getString("localidadDepartamento") + "*";
+			}
+		}
+		catch(SQLException e)
+		{
+			System.out.println("Error en la sentencia SQL: " + e.toString());
+		}
+		return elementosCadena.split("\\*");
+	}
+
+	public void bajaDepartamento(String elementoSeleccionado)
+	{
+		String sentencia = "DELETE FROM departamentos WHERE idDepartamento = " + elementoSeleccionado;
+
+		try
+		{
+			statement =
+					connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			statement.executeUpdate(sentencia);
+		}
+		catch(SQLException e)
+		{
+			System.out.println("Error en la sentencia SQL:"+e.toString());
+		}
 	}
 }
