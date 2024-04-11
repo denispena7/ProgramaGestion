@@ -28,8 +28,14 @@ public class MenuPrincipal implements WindowListener, ActionListener
 	MenuItem mniBajaEmpleado = new MenuItem("Baja");
 	MenuItem mniEditarEmpleado = new MenuItem("Editar");
 	
-	MenuPrincipal ()
+	int tipo;
+	String usuario;
+	
+	MenuPrincipal (int t, String u)
 	{
+		tipo = t;
+		usuario = u; 
+		
 		ventana.setLayout(new FlowLayout());
 		
 		ventana.addWindowListener(this);
@@ -81,15 +87,15 @@ public class MenuPrincipal implements WindowListener, ActionListener
 	{
 		if(actionEvent.getSource().equals(mniConsultaDepartamento))
 		{
-			new ConsultaDepartamento();
+			new ConsultaDepartamento(usuario);
 		}
 		else if(actionEvent.getSource().equals(mniAltaDepartamento))
 		{
-			new AltaDepartamento();
+			new AltaDepartamento(usuario);
 		}
 		else if(actionEvent.getSource().equals(mniBajaDepartamento))
 		{
-			new BajaDepartamento();
+			new BajaDepartamento(usuario);
 		}
 	}
 }

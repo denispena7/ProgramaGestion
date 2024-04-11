@@ -27,8 +27,11 @@ public class AltaDepartamento implements WindowListener, ActionListener
 	
 	Datos datos = new Datos();
 	
-	AltaDepartamento() 
+	String usuario;
+	
+	AltaDepartamento(String u) 
 	{
+		usuario = u;
 		ventana.setLayout(new FlowLayout());
 		ventana.addWindowListener(this);
 		btnAceptar.addActionListener(this);

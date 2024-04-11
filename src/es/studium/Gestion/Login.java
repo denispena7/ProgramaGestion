@@ -90,6 +90,7 @@ public class Login implements WindowListener, ActionListener
 		{
 			// Conectar a la BD
 			Datos datos = new Datos();
+			Utilidades utilidades = new Utilidades();
 			if(datos.conectar()==true)
 			{
 				// Si OK, comprobarlascredenciales
@@ -98,8 +99,10 @@ public class Login implements WindowListener, ActionListener
 
 				if(datos.comprobarCredenciales(usuario, clave)== true)
 				{
+					int tipo = datos.dameTipo(usuario);
 					// Si OK, ir al Menú Principal
-					new MenuPrincipal();
+					new MenuPrincipal(tipo, usuario);
+					utilidades.guardarLog(usuario,"Ha entrado");
 					ventana.setVisible(false);
 				}
 				else

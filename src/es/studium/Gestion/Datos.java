@@ -16,6 +16,8 @@ public class Datos
 	Connection connection = null;
 	Statement statement = null;
 	ResultSet rs = null;
+	
+	Utilidades utilidades = new Utilidades();
 
 	Datos() {}
 
@@ -117,6 +119,7 @@ public class Datos
 		boolean altaCorrecta = true;
 		String sentenciaSQL = "INSERT INTO departamentos VALUES (NULL, '" + nombre + "', '" + localidad + "');";
 		System.out.println(sentenciaSQL);
+		utilidades.guardarLog("?", sentenciaSQL);
 
 		try
 		{
